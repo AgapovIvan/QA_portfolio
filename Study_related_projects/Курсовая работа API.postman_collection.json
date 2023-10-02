@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "e56632bd-ed10-4d20-8176-c9fd3c528a91",
+		"name": "Курсовая работа API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28199178"
+	},
+	"item": [
+		{
+			"name": "Получение расписания",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\": \"2023-07-17T00:00:00+03:00\",\r\n    \"till\": \"2023-07-24T00:00:00+03:00\",\r\n    \"onlyTypes\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}events",
+					"host": [
+						"{{baseUrl}}events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание личного события с валидными данными в настоящем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalIDPresent\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAtPresent\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"АгаповИванДмитриевич\",\r\n    \"startAt\": \"2023-07-23T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-23T20:00:00+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание личного события с валидными данными в будущем",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalIDFuture\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAtFuture\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"АгаповИД\",\r\n    \"startAt\": \"2023-07-24T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-24T20:00:00+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Создание личного события с валидными данными в прошлом",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalIDPast\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAtPast\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Агапов\",\r\n    \"startAt\": \"2023-07-22T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-22T20:00:00+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "создания личного события с некорректной датой",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalID\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAt\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Агапов\",\r\n    \"startAt\": \"2023-07-32T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-32T20:00:00+03:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "создание личного события с неустановленной датой",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalID\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAt\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Агапов\",\r\n    \"startAt\": \"\",\r\n    \"endAt\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}createPersonal",
+					"host": [
+						"{{baseUrl}}createPersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Редактирование только имени  личного события",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalIDPresent\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAtPresent\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Дмитриевич\",\r\n    \"startAt\": \"2023-07-23T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-23T20:00:00+03:00\",\r\n    \"id\": {{PersonalIDPresent}},\r\n    \"oldStartAt\": \"{{startAtPresent}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}updatePersonal",
+					"host": [
+						"{{baseUrl}}updatePersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Редактирование только даты личного события",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"PersonalIDPresent\"\r",
+							"var value = pm.response.json().data.payload.id\r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"var key = \"startAtPresent\"\r",
+							"var value = pm.response.json().data.startAt\r",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"backgroundColor\": \"#F9EBFF\",\r\n    \"color\": \"#D478F1\",\r\n    \"description\": \"\",\r\n    \"title\": \"Дмитриевич\",\r\n    \"startAt\": \"2023-07-25T19:30:00+03:00\",\r\n    \"endAt\": \"2023-07-25T20:00:00+03:00\",\r\n    \"id\": {{PersonalIDPresent}},\r\n    \"oldStartAt\": \"{{startAtPresent}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}updatePersonal",
+					"host": [
+						"{{baseUrl}}updatePersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "удаление личного события из прошлого",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{PersonalIDPast}},\r\n    \"startAt\": \"{{startAtPast}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}removePersonal",
+					"host": [
+						"{{baseUrl}}removePersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "удаление личного события из настоящего",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{PersonalIDPresent}},\r\n    \"startAt\": \"{{startAtPresent}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}removePersonal",
+					"host": [
+						"{{baseUrl}}removePersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "удаление личного события из будущего",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{PersonalIDFuture}},\r\n    \"startAt\": \"{{startAtFuture}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}removePersonal",
+					"host": [
+						"{{baseUrl}}removePersonal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "удаление несуществующего личного события",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token_global={{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{PersonalIDPresent}},\r\n    \"startAt\": \"{{startAtPresent}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}removePersonal",
+					"host": [
+						"{{baseUrl}}removePersonal"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api-teachers.skyeng.ru/v2/schedule/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NzIwMDY5LCJpZGVudGl0eSI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJpZGVudGl0eVBob25lIjoiKzc5ODU0NTg2NTY4IiwibmFtZSI6InRlc3QiLCJzdXJuYW1lIjpudWxsLCJlbWFpbCI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsInVpTGFuZ3VhZ2UiOiJydSIsImxvY2FsZSI6InJ1Iiwic2VydmljZUxvY2FsZSI6bnVsbCwidWFzIjozMCwiand0VHlwZSI6MSwianRpIjoiR0txVlNJVHJ4aGlwQm96eUIxR3R4QTJqZEMydEczMEYiLCJicmFuZCI6bnVsbCwiZXhwIjoxNjkwMTI0NDEwLCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY5MDAzODAwNywicm9sZXMiOlsiUk9MRV9URUFDSEVSX0NBTkRJREFURSIsIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEVfQkFTRV9BQ0NFU1MiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.lF1mtgkV0owbrufMAEy_lj_kTaVc5PrneXwBynYlnVBWsxJHkWC7nJUXs8NL9AWyExRyWctv1rv5gxwI4pOLImFPdakV8T0y7X1KGx8CaglDxYHGNRWkdPClMUffRG2zs9oKyXLoFbVnKRk32NLAVlYr9w-mNiPbmoOpTXQS6xBhOoItaVRlDc8KtepByvTyA87Ifhrg4ptGbCiDx_HvWbF45RCxslxuBZXrDrx9Zbtf_AJkDqOO85SR97TLeuw4NrFoSRaUcDy02GVNSleS46vkts_coYmcTzda13XxykWUYkG1fZYcGmR4GpmvGnLkYULdnDFAy8dZReiWtlaFvhdMy6sUPhwR-2AKcZ82RmflVEJHVXaBHkxnlOpWC-8IwQidYrSazqnUCSR75yTjRQ1O4bTUJ_7kI7Wfss7_ptA38WgzfM3Kve8hxhUstaUwJ__ouoVZGdLG3e0eolD-nt6cYR1kzJTxbkwocAzpjZt4cR0k2LIq48U5GUEUJmYDwRuz7BaZj74g3wZB9lC90huoDOaxhA2PLkaYJKPGp5Dzi1VZrDpR522BPWuq4ZlRiLbFfh0gJyOYF9Fysf-OE2tJW6RcdIWhfT2FQOQMKFtgeVvgm2n9jG4hJYvM4YRtRFP3QEK820Plr6UXp0HWSZhj-qxYJGXHeFRICCOzJaM; _seid=92344cb925f646b6831def1ca3462826; _setz=Europe/Moscow; session_teachers_cabinet=bi8i92mam07kh8hf9ai7ld79rn; _ym_visorc=w; _ga_SR964WVJCV=GS1.1.1690105326.4.1.1690106154.0.0.0; amplitude_id_ef9dd375ed875487462b31c2bbac3d1fskyeng.ru=eyJkZXZpY2VJZCI6ImI3YzA2OGQwLWI1NmItNGRiNC04MDRhLTJiYTgwMDUxNDA0YVIiLCJ1c2VySWQiOiIxNDcyMDA2OSIsIm9wdE91dCI6ZmFsc2UsInNlc3Npb25JZCI6MTY5MDEwNTMyNjQ5MSwibGFzdEV2ZW50VGltZSI6MTY5MDEwNjE1NTA5MiwiZXZlbnRJZCI6MCwiaWRlbnRpZnlJZCI6MCwic2VxdWVuY2VOdW1iZXIiOjB9",
+			"type": "string"
+		},
+		{
+			"key": "PersonalIDPresent",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAtPresent",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PersonalIDPast",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAtPast",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PersonalIDFuture",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAtFuture",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
