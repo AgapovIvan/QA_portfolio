@@ -1,0 +1,67 @@
+Основное задание:
+
+1.SELECT level, COUNT(*) AS personal_count FROM student WHERE education_form = 'personal' GROUP BY level;
+
+2.SELECT education_form, COUNT(*) AS advanced_count FROM student WHERE level = 'Advanced' GROUP BY education_form;
+
+3.SELECT level, education_form, COUNT(*) AS student_count
+FROM student
+GROUP BY level, education_form
+ORDER BY level ASC, education_form DESC;
+
+4.SELECT MAX(user_id) AS max_user_id, MIN(user_id) AS min_user_id
+FROM student;
+
+5.SELECT group_id, COUNT(user_id) AS student_count
+FROM group_student
+GROUP BY group_id
+ORDER BY student_count DESC
+LIMIT 1;
+
+Дополнительное задание:
+Создание таблиц:
+
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    customer_nm VARCHAR(255)
+);
+
+INSERT INTO customers (customer_nm) VALUES
+    ('Клиент 1'),
+    ('Клиент 2'),
+    ('Клиент 3');
+
+CREATE TABLE sales (
+    sale_id SERIAL PRIMARY KEY,
+    store_id INTEGER,
+    customer_id INTEGER,
+    dt DATE,
+    amt NUMERIC(10, 2)
+);
+
+INSERT INTO sales (store_id, customer_id, dt, amt) VALUES
+    (1, 1, '2023-09-01', 100.50),
+    (1, 2, '2023-09-02', 75.25),
+    (2, 1, '2023-09-03', 120.00),
+    (2, 3, '2023-09-04', 50.75),
+    (3, 2, '2023-09-05', 90.60);
+
+
+Задания:
+
+1.SELECT MAX(amt) AS max_sale_amount
+FROM sales;
+
+2.SELECT MIN(dt) AS min_sale_date
+FROM sales;
+
+3.SELECT AVG(amt) AS avg_sale_amount
+FROM sales
+WHERE customer_id = 1;
+
+4.SELECT MIN(amt) AS min_sale_amount, MAX(amt) AS max_sale_amount
+FROM sales
+WHERE store_id = 3 OR customer_id = 2;
+
+5.SELECT COUNT(DISTINCT customer_nm) AS unique_customer_names_count
+FROM customers;

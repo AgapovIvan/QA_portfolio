@@ -1,0 +1,43 @@
+Основное задание:
+
+1.SELECT gs.user_id, gs.group_id
+FROM group_student gs
+JOIN teacher t ON gs.group_id = t.group_id
+WHERE t.email = 'blanda.jamil@yahoo.com';
+
+2.SELECT s.level
+FROM users u
+JOIN student s ON u.user_id = s.user_id
+WHERE u.user_email = 'gpagac@jacobs.com';
+
+3.SELECT DISTINCT s.subject_title
+FROM users u
+JOIN subject s ON u.subject_id = s.subject_id
+WHERE u.user_id = 11300;
+
+4.SELECT DISTINCT u.subject_id
+FROM users u
+JOIN group_student gs ON u.user_id = gs.user_id
+WHERE gs.group_id = 10;
+
+Допонительное задание:
+
+1.SELECT DISTINCT p.category
+FROM positions pos
+JOIN products p ON pos.art = p.art
+WHERE pos.id_check = 3;
+
+2.SELECT p.art
+FROM products p
+LEFT JOIN positions pos ON p.art = pos.art
+WHERE pos.art IS NULL;
+
+3.SELECT COUNT(DISTINCT pos.id_check) AS number_of_receipts
+FROM positions pos
+JOIN products p ON pos.art = p.art
+WHERE p.category = 'обувь' AND pos.quantity > 2;
+
+4.SELECT COUNT(DISTINCT pos.id_check) AS number_of_receipts
+FROM positions pos
+JOIN products p ON pos.art = p.art
+WHERE p.category = 'одежда' AND pos.quantity > 2;
