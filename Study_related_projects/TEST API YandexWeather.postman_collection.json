@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "2199c6b3-e230-4396-b219-2920fd3b0a02",
+		"name": "TEST API YandexWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28199178"
+	},
+	"item": [
+		{
+			"name": "Positive",
+			"item": [
+				{
+					"name": "г.Владимир",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=56.14483111314425&lon=40.38777858076934&lang=ru_RU",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "56.14483111314425"
+								},
+								{
+									"key": "lon",
+									"value": "40.38777858076934"
+								},
+								{
+									"key": "lang",
+									"value": "ru_RU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Штаб квартира YANDEX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=55.76092350593521&lon=37.5970103210761&lang=ru_RU",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "55.76092350593521"
+								},
+								{
+									"key": "lon",
+									"value": "37.5970103210761"
+								},
+								{
+									"key": "lang",
+									"value": "ru_RU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Штаб квартира GOOGLE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=37.38835101678006&lon=-122.07921062150439&lang=ru_RU",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "37.38835101678006"
+								},
+								{
+									"key": "lon",
+									"value": "-122.07921062150439"
+								},
+								{
+									"key": "lang",
+									"value": "ru_RU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative",
+			"item": [
+				{
+					"name": "несуществующие координаты",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=ввв&lon=ввв&lang=ru_RU",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "ввв"
+								},
+								{
+									"key": "lon",
+									"value": "ввв"
+								},
+								{
+									"key": "lang",
+									"value": "ru_RU"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "несуществующий язык",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=56.14483111314425&lon=40.38777858076934&lang=я",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "56.14483111314425"
+								},
+								{
+									"key": "lon",
+									"value": "40.38777858076934"
+								},
+								{
+									"key": "lang",
+									"value": "я"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "неверный ключ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{key}}",
+								"value": "51651618",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}?lat=56.14483111314425&lon=40.38777858076934&lang=ru_RU",
+							"host": [
+								"{{URL}}"
+							],
+							"query": [
+								{
+									"key": "lat",
+									"value": "56.14483111314425"
+								},
+								{
+									"key": "lon",
+									"value": "40.38777858076934"
+								},
+								{
+									"key": "lang",
+									"value": "ru_RU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "key",
+			"value": "X-Yandex-API-Key"
+		},
+		{
+			"key": "token",
+			"value": "2bd1eab8-351d-4b4f-b557-ad06db681c74"
+		},
+		{
+			"key": "URL",
+			"value": "https://api.weather.yandex.ru/v2/forecast"
+		}
+	]
+}
